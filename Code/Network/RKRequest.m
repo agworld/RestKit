@@ -390,6 +390,7 @@ RKRequestMethod RKRequestMethodTypeFromName(NSString *methodName) {
 // Setup the NSURLRequest. The request must be prepared right before dispatching
 - (BOOL)prepareURLRequest {
     [_URLRequest setHTTPMethod:[self HTTPMethod]];
+    [_URLRequest setTimeoutInterval:self.timeoutInterval];
 
     if ([self.delegate respondsToSelector:@selector(requestWillPrepareForSend:)]) {
         [self.delegate requestWillPrepareForSend:self];
