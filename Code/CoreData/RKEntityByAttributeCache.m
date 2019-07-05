@@ -30,6 +30,7 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize attributeValuesToObjectIDs = _attributeValuesToObjectIDs;
 @synthesize monitorsContextForChanges = _monitorsContextForChanges;
+@synthesize monitorsMemoryWarnings = _monitorsMemoryWarnings;
 
 - (id)initWithEntity:(NSEntityDescription *)entity attribute:(NSString *)attributeName managedObjectContext:(NSManagedObjectContext *)context
 {
@@ -39,6 +40,7 @@
         _attribute = [attributeName retain];
         _managedObjectContext = [context retain];
         _monitorsContextForChanges = YES;
+        _monitorsMemoryWarnings = NO;
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(managedObjectContextDidChange:)
@@ -273,7 +275,8 @@
 
 - (void)didReceiveMemoryWarning:(NSNotification *)notification
 {
-    [self flush];
+    if (self.monitorsMemoryWarnings)
+        [self flush];
 }
 
 @end

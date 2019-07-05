@@ -68,6 +68,16 @@
  */
 @property (nonatomic, assign) BOOL monitorsContextForChanges;
 
+/**
+ A Boolean value determining if the receiving monitors any application memory
+ warnings. Defaults to NO.
+
+ JL: We don't want to flush on memory warning as mapping can still be occuring.
+ This can lead to a nil assignment, which is incorrect since the entity does
+ exist.
+ */
+@property (nonatomic, assign) BOOL monitorsMemoryWarnings;
+
 ///-----------------------------------------------------------------------------
 /// @name Loading and Flushing the Cache
 ///-----------------------------------------------------------------------------
