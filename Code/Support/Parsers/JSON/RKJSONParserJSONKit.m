@@ -37,7 +37,12 @@
 }
 
 - (NSString*)stringFromObject:(id)object error:(NSError**)error {
-    return [object JSONStringWithOptions:JKSerializeOptionNone error:error];
+    //return [object JSONStringWithOptions:JKSerializeOptionNone error:error];
+    NSData* data = [NSJSONSerialization dataWithJSONObject:object options:(NSJSONWritingOptions)0 error:error];
+    if (data != nil)
+        return [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    return nil;
+    
 }
 
 @end
