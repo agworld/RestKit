@@ -51,14 +51,14 @@ RK_FIX_CATEGORY_BUG(NSManagedObject_ActiveRecord)
 
 #pragma mark - RKManagedObject methods
 
-+ (NSEntityDescription*)entity {
++ (NSEntityDescription*)MR_entity {
     NSString* className = [NSString stringWithCString:class_getName([self class]) encoding:NSASCIIStringEncoding];
     return [NSEntityDescription entityForName:className inManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]];
 }
 
-+ (NSFetchRequest*)fetchRequest {
++ (NSFetchRequest*)MR_fetchRequest {
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-    NSEntityDescription *entity = [self entity];
+    NSEntityDescription *entity = [self MR_entity];
     [fetchRequest setEntity:entity];
     return fetchRequest;
 }
@@ -128,7 +128,7 @@ RK_FIX_CATEGORY_BUG(NSManagedObject_ActiveRecord)
 }
 
 + (id)object {
-    id object = [[self alloc] initWithEntity:[self entity] insertIntoManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]];
+    id object = [[self alloc] initWithEntity:[self MR_entity] insertIntoManagedObjectContext:[NSManagedObjectContext contextForCurrentThread]];
     return [object autorelease];
 }
 
