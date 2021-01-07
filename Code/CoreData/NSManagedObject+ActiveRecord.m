@@ -102,13 +102,13 @@ RK_FIX_CATEGORY_BUG(NSManagedObject_ActiveRecord)
 }
 
 + (NSArray*)objectsWithPredicate:(NSPredicate*)predicate {
-    NSFetchRequest* fetchRequest = [self fetchRequest];
+    NSFetchRequest* fetchRequest = [self MR_fetchRequest];
     [fetchRequest setPredicate:predicate];
     return [self objectsWithFetchRequest:fetchRequest];
 }
 
 + (id)objectWithPredicate:(NSPredicate*)predicate {
-    NSFetchRequest* fetchRequest = [self fetchRequest];
+    NSFetchRequest* fetchRequest = [self MR_fetchRequest];
     [fetchRequest setPredicate:predicate];
     return [self objectWithFetchRequest:fetchRequest];
 }
@@ -118,7 +118,7 @@ RK_FIX_CATEGORY_BUG(NSManagedObject_ActiveRecord)
 }
 
 + (NSUInteger)count:(NSError**)error {
-    NSFetchRequest* fetchRequest = [self fetchRequest];
+    NSFetchRequest* fetchRequest = [self MR_fetchRequest];
     return [[NSManagedObjectContext contextForCurrentThread] countForFetchRequest:fetchRequest error:error];
 }
 
