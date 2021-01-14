@@ -31,12 +31,12 @@
  * The NSEntityDescription for the Subclass
  * defaults to the subclass className, may be overridden
  */
-+ (NSEntityDescription*)entity;
++ (NSEntityDescription*)MR_entity;
 
 /**
  * Returns an initialized NSFetchRequest for the entity, with no predicate
  */
-+ (NSFetchRequest*)fetchRequest;
++ (NSFetchRequest*)MR_fetchRequest;
 
 /**
  * Fetches all objects from the persistent store identified by the fetchRequest
